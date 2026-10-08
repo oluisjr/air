@@ -18,8 +18,8 @@ function I({as:Icon,size=18,color=C.muted}: {as:LucideIcon;size?:number;color?:s
 function Btn({label,onPress,icon:Icon=Plus}: {label:string;onPress:()=>void;icon?:LucideIcon}){return <Pressable onPress={onPress} style={s.btn}><I as={Icon} size={16} color="#fff"/><T size={12} color="#fff" bold>{label}</T></Pressable>}
 function Tab({name,onPress,on}: {name:string;onPress:()=>void;on:boolean}){return <Pressable onPress={onPress} style={[s.tab,on&&s.tabOn]}><T size={12} color={on?C.blue:C.muted} bold={on}>{name}</T></Pressable>}
 function Heading({title,desc}: {title:string;desc?:string}){return <View style={{marginBottom:24}}><T size={38} light>{title}</T>{desc&&<T size={13} color={C.muted}>{desc}</T>}</View>}
-function Bar({value}: {value:number}){return <View style={{height:6,backgroundColor:'#DCEAF3',borderRadius:9,overflow:'hidden'}}><View style={{width:String(value)+'%',height:6,backgroundColor:C.aqua}}/></View>}
-function Graph({values=[18,39,28,57,35,61,49,72,52,80]}: {values?:number[]}){return <View style={{height:58,flexDirection:'row',gap:6,alignItems:'flex-end',marginTop:10}}>{values.map((v,i)=><View key={i} style={{flex:1,height:String(v)+'%',backgroundColor:C.blue,opacity:.25+i*.065,borderRadius:5}}/>)}</View>}
+function Bar({value}: {value:number}){return <View style={{height:6,backgroundColor:'#DCEAF3',borderRadius:9,overflow:'hidden'}}><View style={{width:`${value}%` as `${number}%`,height:6,backgroundColor:C.aqua}}/></View>}
+function Graph({values=[18,39,28,57,35,61,49,72,52,80]}: {values?:number[]}){return <View style={{height:58,flexDirection:'row',gap:6,alignItems:'flex-end',marginTop:10}}>{values.map((v,i)=><View key={i} style={{flex:1,height:`${v}%` as `${number}%`,backgroundColor:C.blue,opacity:.25+i*.065,borderRadius:5}}/>)}</View>}
 export default function App(){
  const desktop=useWindowDimensions().width>=850;
  const [page,setPage]=useState<Page>('Início'),[tasks,setTasks]=useState<Task[]>(initialTasks),[buys,setBuys]=useState<Buy[]>(initialBuys);
